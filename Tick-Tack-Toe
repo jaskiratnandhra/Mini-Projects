@@ -1,0 +1,257 @@
+
+from random import *
+class code(object):
+    def __init__(self):
+        
+        self.l=['a','b','c','d','e','f','g','h','i']
+        self.a="1"
+        self.b='2'
+        self.c='3'
+        self.d='4'
+        self.e='5'
+        self.f='6'
+        self.g='7'
+        self.h='8'
+        self.i='9'
+        self.gui()
+    def gui(self):
+        if self.l==[]:
+            print "Draw"
+            quit()
+        else:    
+            print"   ",self.a,"   |   ",self.b,"   |   ",self.c,"   "
+            print"   ---   -   ---   -   --- "
+            print"   ",self.d,"   |   ",self.e,"   |   ",self.f,"   "
+            print"   ---   -   ---   -   --- "
+            print"   ",self.g,"   |   ",self.h,"   |   ",self.i,"   "
+            print"chose the position:"
+            self.ch = raw_input("Enter the number")
+            self.choise()
+
+    def choise(self):
+        try:
+            if self.ch=='1':
+                self.l.remove('a')
+            
+                self.a="O"
+                self.computer()
+                self.gui()
+            elif self.ch=='2':
+                self.l.remove('b')
+            
+                self.b="O"
+                self.computer()
+                self.gui()
+            elif self.ch=='3':
+                self.l.remove('c')
+            
+                self.c="O"
+                self.computer()
+                self.gui()
+            elif self.ch=='4':
+                self.l.remove('d')
+            
+                self.d="O"
+                self.computer()
+                self.gui()
+            elif self.ch=='5':
+                self.l.remove('e')
+            
+                self.e="O"
+                self.computer()
+                self.gui()
+            elif self.ch=='6':
+                self.l.remove('f')
+            
+                self.f="O"
+                self.computer()
+                self.gui()
+            elif self.ch=='7':
+                self.l.remove('g')
+            
+                self.g="O"
+                self.computer()
+                self.gui()
+            elif self.ch=='8':
+                self.l.remove('h')
+            
+                self.h="O"
+                self.computer()
+                self.gui()
+            elif self.ch=='9':
+                self.l.remove('i')
+            
+                self.i="O"
+                self.computer()
+                self.gui()
+            else:
+                print "Enter a valid option"
+                self.choise()
+        except:
+            print"This place is already filled\nTry again"
+            self.gui()
+            
+    def computer(self):
+        
+        if self.a==self.b=='O' and self.c!='O' and self.c!='X':
+            self.c='X'
+            self.check()
+            self.l.remove('c')
+        elif self.a==self.c=='O' and self.b!='O' and self.b!='X':
+            self.b='X'
+            self.check()
+            self.l.remove('b')
+        elif self.b==self.c=='O' and self.a!='O' and self.a!='X':
+            self.a='X'
+            self.check()
+            self.l.remove('a')
+        elif self.a==self.e=='O' and self.i!='O' and self.i!='X':
+            self.i='X'
+            self.check()
+            self.l.remove('i')
+        elif self.a==self.i=='O' and self.e!='O' and self.e!='X':
+            self.e='X'
+            self.check()
+            self.l.remove('e')
+        elif self.e==self.i=='O' and self.a!='O' and self.a!='X':
+            self.a='X'
+            self.check()
+            
+            self.l.remove('a')
+        elif self.a==self.d=='O' and self.g!='O' and self.g!='X':
+            self.g='X'
+            self.check()
+            self.l.remove('g')
+        elif self.a==self.g=='O' and self.d!='O' and self.d!='X':
+            self.d='X'
+            self.check()
+            self.l.remove('d')
+        elif self.d==self.g=='O' and self.a!='O' and self.a!='X':
+            self.a='X'
+            self.check()
+            self.l.remove('a')
+        elif self.e==self.b=='O' and self.h!='O' and self.h!='X':
+            self.h='X'
+            self.check()
+            self.l.remove('h')
+        elif self.e==self.h=='O' and self.b!='O' and self.b!='X':
+            self.b='X'
+            self.check()
+            self.l.remove('b')
+        elif self.b==self.h=='O' and self.e!='O' and self.e!='X':
+            self.e='X'
+            self.check()
+            self.l.remove('e')
+        elif self.e==self.b=='O' and self.h!='O' and self.h!='X':
+            self.h='X'
+            self.check()
+            self.l.remove('h')
+        elif self.d==self.e=='O' and self.f!='O' and self.f!='X':
+            self.f='X'
+            self.check()
+            self.l.remove('f')
+        elif self.d==self.f=='O' and self.e!='O' and self.e!='X':
+            self.e='X'
+            self.check()
+            self.l.remove('e')
+        elif self.e==self.f=='O' and self.d!='O' and self.d!='X':
+            self.d='X'
+            self.check()
+            self.l.remove('d')
+        elif self.g==self.h=='O' and self.i!='O' and self.i!='X':
+            self.i='X'
+            self.check()
+            self.l.remove('i')
+        elif self.g==self.i=='O' and self.h!='O' and self.h!='X':
+            self.h='X'
+            self.check()
+            self.l.remove('h')
+        elif self.h==self.i=='O' and self.g!='O' and self.g!='X':
+            self.g='X'
+            self.check()
+            self.l.remove('g')
+        
+
+        else:
+            self.q=choice(self.l)
+            if self.q=='a':
+                self.a='X'
+                self.check()
+                self.l.remove('a')
+            elif self.q=='b':
+                self.b='X'
+                self.check()
+                self.l.remove('b')
+            elif self.q=='c':
+                self.c='X'
+                self.check()
+                self.l.remove('c')
+            elif self.q=='d':
+                self.d='X'
+                self.check()
+                self.l.remove('d')
+            elif self.q=='e':
+                self.e='X'
+                self.check()
+                self.l.remove('e')
+            elif self.q=='f':
+                self.f='X'
+                self.check()
+                self.l.remove('f')
+            elif self.q=='g':
+                self.g='X'
+                self.check()
+                self.l.remove('g')
+            elif self.q=='h':
+                self.h='X'
+                self.check()
+                self.l.remove('h')
+            elif self.q=='i':
+                self.i='X'
+                self.check()
+                self.l.remove('i')
+            self.gui()
+        
+    def check(self):
+        if self.a==self.b==self.c=='O' or self.a==self.e==self.i=='O' or self.a==self.d==self.g=='O':
+            print "You won"
+            quit()
+        elif self.e==self.b==self.h=='O':
+            print("you won")
+            quit()
+        elif self.c==self.e==self.g=='O':
+            print"You won"
+            quit()
+        
+        elif self.d==self.e==self.f=='O':
+            print "You won"
+            quit()
+        elif self.g==self.h==self.i=='O':
+            print "YOu won"
+            quit()
+        elif self.c==self.f==self.i=='O':
+            print"You won"
+            quit()
+        elif self.c==self.f==self.i=='X':
+            print"You lost"
+            quit()
+
+        elif self.a==self.b==self.c=='X' or self.a==self.e==self.i=='X' or self.a==self.d==self.g=='X':
+            print "You Lost"
+            quit()
+        elif self.c==self.e==self.g=='X':
+            print"You lost"
+            quit()
+        elif self.e==self.b==self.h=='X':
+            print("you lost")
+            quit()
+        
+        elif self.d==self.e==self.f=='X':
+            print "You lost"
+            quit()
+        elif self.g==self.h==self.i=='X':
+            print "YOu lost"
+            quit()
+        
+        
+a=code()
