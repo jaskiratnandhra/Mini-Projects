@@ -1,0 +1,312 @@
+import string           #String Module Imported
+import random           #Random Module Imported
+from time import *      #Time Module Imported
+import pickle           #Pickle module imported
+print '\n'
+print '\n'
+line_1 = "Welcome to JP GUESS GAME"
+print line_1.center(150)
+print '\n'
+line_3a = " "
+line_3b = "."
+line_2 = "Loading"
+print line_3a.center(68),line_2,
+
+
+sleep(0.75)
+count_1=1
+while count_1<4:
+    print line_3b ,
+    sleep(0.75)
+    count_1+=1
+else:
+    print '\n'
+    
+
+print '\n'
+sleep(1)
+
+class code(object):
+    def __init__(self):
+        self.l=None
+        self.x=''
+        self.guess=''
+        self.ch=0
+        self.n=''
+        self.c=0
+        
+        self.option()
+    def option(self):
+        print '\n'
+        print 'You are Requested to enter your choice:'
+        print ' 1)Press 1 : Register / Login to play the game \n'
+        sleep(0.75)
+        print ' 2)Press 2 : Instructions \n'
+        sleep(0.75)
+        print ' 3)Press 3 : To quit the game \n'
+        sleep(1)
+        c=input('Enter the choice:')
+        sleep(1)
+        if c==1:
+            line_2 = "Loading"
+            print line_2.center(150)
+            line_3a = " "
+            line_3b = "."
+           
+            print line_3a.center(68),
+            sleep(0.75)
+            count_1=1
+            while count_1<7:
+                print line_3b ,
+                sleep(0.75)
+                count_1+=1
+            print '\n'
+            self.name=raw_input("Enter your name : ")
+            print '\n'
+            print ("Welcome"+' ' + string.capitalize(self.name)).center(150)#
+            sleep(0.75)
+            self.gui()
+        elif c==2:
+            print '\n'
+            f=open('list.txt','r')   
+            x=f.read()
+            self.l=x.split()
+            f.close()
+            line_2 = "Loading"
+            print line_2.center(150)
+            line_3a = " "
+            line_3b = "."
+           
+            print line_3a.center(68),
+            sleep(0.75)
+            count_1=1
+            while count_1<7:
+                print line_3b ,
+                sleep(0.75)
+                count_1+=1
+            else:
+                print '\n'
+                print 'HELLO! In order to play the game first register for the same .\n In this game a word would be chosen of random basis.\n The length of the chosen word would be specified in the bigining.\n First of all the user need to enter the word which he would guess \n  of the correct word length , otherwise the game would demand for \n the word again and again.\n After entering the word of correct word length the following preoces:\n 1) If the entered word has letters which exist in the acutal word then  the game would tell if a spefic letter exixts in it or not.]\n 2) If the entered word is correct then the user would win.\n 3) If the entered word has letters which exist in the acutal word at the exactly same position the game would tell letter.\n The player would have specific no. of chances according to the length of the word.'
+                print '\n'
+                self.option()
+        elif c==3:
+            quit()    
+    def gui(self):
+        print '\n'
+        print 'You are Requested to enter your choice:'
+        print ' 1)Press 1 : To play the game \n'
+        sleep(0.75)
+        print ' 2)Press 2 : To check your latest word that any perivious player guessed \n'
+        sleep(0.75)
+        print ' 3)Press 3 : How to play \n'
+        sleep(0.75)
+        print ' 4)Press 4 : Add a few words to the game \n'
+        sleep(0.75)
+        print ' 5)Press 5 : Sign Out \n'
+        sleep(1)
+        ch=input('Enter the choice:')
+        sleep(1)
+        if ch==1:
+            z='Lets play'
+            f=open('list.txt','r')   
+            x=f.read()
+            self.l=x.split()
+            f.close()
+            print z.center(150)
+            print '\n'
+            line_2 = "Loading"
+            print line_2.center(150)
+            line_3a = " "
+            line_3b = "."
+            print line_3a.center(68),
+            sleep(0.75)
+            count_1=1
+            while count_1<7:
+                print line_3b ,
+                sleep(0.75)
+                count_1+=1
+           
+            self.assign()    
+        elif ch==2:
+            print '\n'
+            line_2 = "Loading"
+            print line_2.center(150)
+            line_3a = " "
+            line_3b = "."
+           
+            print line_3a.center(68),
+            sleep(0.75)
+            count_1=1
+            while count_1<7:
+                print line_3b ,
+                sleep(0.75)
+                count_1+=1
+            else:
+                print '\n'
+            y=raw_input('Enter the persons name whose history of words you want to see :')
+            try:
+                
+                fo=open(y+'.dat','rb')
+                try:
+                    while True:
+                        b=pickle.load(fo)
+                        print b
+                except:
+                    fo.close
+            except:
+                print 'The person wwith theis name has not palyed the game'
+            
+            
+            self.gui()
+        elif ch==3:
+            print '\n'
+            line_2 = "Loading"
+            print line_2.center(150)
+            line_3a = " "
+            line_3b = "."
+            
+            print line_3a.center(68),
+            sleep(0.75)
+            count_1=1
+            while count_1<7:
+                print line_3b ,
+                sleep(0.75)
+                count_1+=1
+            else:
+                print '\n'
+                sleep(2)
+            print 'HELLO! In this game a word would be chosen of random basis.\n The length of the chosen word would be specified in the bigining.\n First of all the user need to enter the word which he would guess \n  of the correct word length , otherwise the game would demand for \n the word again and again.\n After entering the word of correct word length the following preoces:\n 1) If the entered word has letters which exist in the acutal word then  the game would tell if a spefic letter exixts in it or not.]\n 2) If the entered word is correct then the user would win.\n 3) If the entered word has letters which exist in the acutal word at the exactly same position the game would tell letter.\n The player would have specific no. of chances according to the length of the word.'
+            print '\n'
+            print ' There is cheat in the game: \n If the user wants to end the game when the computer is demanding the word the just enter 1 when it asks for a word and the game would be terminated \n game the word would be releaved'
+            
+            self.gui()
+        elif ch==4:
+            print '\n'
+            f=open('list.txt','r')   
+            x=f.read()
+            self.l=x.split()
+            f.close()
+            line_2 = "Loading"
+            print line_2.center(150)
+            line_3a = " "
+            line_3b = "."
+           
+            print line_3a.center(68),
+            sleep(0.75)
+            count_1=1
+            while count_1<7:
+                print line_3b ,
+                sleep(0.75)
+                count_1+=1
+            else:
+                print '\n'
+            y=raw_input('Enter the word you want to insert :')
+            print '\n'
+            print 'Let the system check your word'
+            sleep(1)
+            print '\n'
+            f=open('dict.txt','r')
+            x=f.read()
+            if y in x:
+                print 'Thanks for adding a genuen word to the game'
+                self.l += [y]
+                f=open('list.txt','w')
+                a=''
+                
+                for i in range(0,len(self.l)):
+                    b=self.l[i]+' '
+                    a+=b
+                f.write(a)
+                f.close()
+                self.gui()
+            else:
+                print 'The word you are trying to insert is not genuen'
+                sleep(1)
+                self.gui()
+        elif ch==5:
+            print '\n'
+            f=open('list.txt','r')   
+            x=f.read()
+            self.l=x.split()
+            f.close()
+            line_2 = "Loading"
+            print line_2.center(150)
+            line_3a = " "
+            line_3b = "."
+           
+            print line_3a.center(68),
+            sleep(0.75)
+            count_1=1
+            while count_1<7:
+                print line_3b ,
+                sleep(0.75)
+                count_1+=1
+            else:
+                print '\n'
+            self.option()
+    def assign(self):
+        a=random.randint(0,len(self.l))
+        self.guess=self.l[a]
+        print '\n'
+        print 'THE LENGTH OF THE WORD IS ',len(self.guess),'LETTERS'
+        sleep(2)
+        self.ch=len(self.guess)*2
+        self.get_data()
+        
+    def get_data(self):
+        while True:
+            c=0
+            print '\n'
+            self.x=raw_input('Guess The Word:')
+            
+            line_2 = "Checking"
+            print line_2.center(150)
+            line_3a = " "
+            line_3b = "."
+            
+            print line_3a.center(71),
+            sleep(0.75)
+            count_1=1
+            while count_1<4:
+                print line_3b ,
+                sleep(0.75)
+                count_1+=1
+            if len(self.x)!=len(self.guess):
+                print '\n'
+                print 'Try again \n Enter the word of correct length'
+  
+            print'\n'
+            if len(self.x)==len(self.guess):
+                if self.x==self.guess:
+                   
+                    print '\n'
+                    print 'CONGRACTS'
+                    print 'YOU GUSSED THE RIGHT WORD'
+                    
+                    f=open(self.name+'.dat','wb+')
+                    d2={self.guess}
+                    pickle.dump(d2,f)
+                    f.close()
+                    self.gui()
+                else:
+                    
+                    for j in range(0,len(self.x)):
+                        for g in range(0,len(self.guess)):
+                            if self.x[j]==self.guess[g]:
+                                if j==g:
+                                    print self.guess[g],'IS PRESENT AT THE CORECT POSITION'
+                                else:
+                                    print self.guess[g],'EXISTS IN THE WORD'
+                                  
+                                
+            elif self.x=='1':
+                print 'The actual word was :',self.guess
+                print '\n'
+                self.gui()
+                
+            
+a=code()            
+           
+            
+
+
