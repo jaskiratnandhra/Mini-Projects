@@ -1,0 +1,188 @@
+import re
+from tkinter import *
+import random
+class code(object):
+    
+    def __init__(self):
+        self.d={}
+        self.a=''
+        self.n=0
+        self.b=''
+        self.c=''
+        self.w=''
+        self.e=''
+        self.f=''
+        self.v=[]
+        self.dic()
+        self.e1=''
+        self.j=None
+        self.r=None
+        self.e2=''
+        self.window=Tk()
+        self.cod()
+    def dic(self):
+        d={}
+        f=open("dict.txt","r")
+        a=f.readline()
+        while a!='':
+            
+            self.v=a.split()
+            
+            self.decrypt()
+            d[self.v[0]]=self.f
+            
+            a=f.readline()
+        f.close()
+        self.d=d
+    def decrypt(self):
+        z=self.v[1]
+        
+        l=[]
+        x=''
+        l= re.split("[!$&=+><]+", z)
+        
+        for i in range(0,len(l)-1):
+            if(i%2==0):
+                
+                c=int(l[i])-1
+                x= x + chr(c)
+            else:
+                t=ord(l[i])+1
+                x=x+chr(t)
+        self.f=x
+        
+                    
+            
+    
+    def cod(self):
+        self.window.geometry("700x200")
+        self.window.title("THE SEQUIRTY CHECK")
+        w = Label(self.window, text='WELCOME TO THE LOCK SCREEN\n\n If you have the Password and User_ID then press Login else press Sign up')
+        w.pack()
+        btn3 = Button(self.window, text = "Login",command=self.rem_my_pas).pack(side = "bottom")
+        btn4 = Button(self.window, text = "Sign up",command = self.new_entry).pack(side = "bottom")
+        self.window.mainloop()
+    def rem_my_pas(self):
+        self.r=Toplevel(self.window)
+        self.r.title("LOGIN PAGE")
+        j=Label(self.r,text='PLEASE ENTER THE USERNAME AND PASSWORD').grid(row=0)
+        Label(self.r, text='Enter the username:').grid(row=1) 
+        Label(self.r, text='PassWord:').grid(row=2)
+        self.d1=Entry(self.r)
+        self.d2=Entry(self.r,show='*')
+        
+        self.d1.grid(row=1, column=1) 
+        self.d2.grid(row=2, column=1)
+        
+        x= Button(self.r, text = "submit",command=self.check).grid(row=3,column=2)
+        t= Button(self.r, text = "BACK",command=self.r.destroy).grid(row=3,column=1)
+    def check(self):
+        a=self.d1.get()
+        
+        b=self.d2.get()
+        
+        f=0
+        for i in self.d:
+            if a==i:
+                
+                if b==self.d[a]:
+                    
+                    q=Toplevel(self.window)
+                    q.title("SUCCESS")
+                    z=Label(q,text='LOGIN IS SUCCESSFULL').grid(row=0)
+                    c= Button( q, text = "OK",command= q.destroy).grid(row=1,column=1)
+                    self.r.destroy()
+                    self.load()
+                    break
+                else:
+                    p=Toplevel(self.window)
+                    p.title("FAILURE")
+                    z=Label(p,text='PLEASE ENTER THE CORRECT CREDINTIALS OR MAKE A NEW ENTRY FOR NEW MEMBER').grid(row=0)
+                    c= Button( p, text = "OK",command= p.destroy).grid(row=1,column=1)
+                    break
+                        
+                        
+            else:
+                f+=1
+        if(f==len(self.d)):
+            p=Toplevel(self.window)
+            p.title("FAILURE")
+            z=Label(p,text='PLEASE ENTER THE CORRECT CREDINTIALS OR MAKE A NEW ENTRY FOR NEW MEMBER').grid(row=0)
+            c= Button( p, text = "OK",command= p.destroy).grid(row=1,column=1)
+                
+                
+    def load(self):
+        
+        self.w=Tk()
+        self.w.geometry("600x300")
+        self.w.title("WELCOME TO THE PORTAL")
+        z=Label(self.w,text='PLEASE MAKE A CHOICE').grid(row=0)
+        
+        a= Button( self.w, text = "Google ",command= self.Restaurants ).grid(row=1,column=0)
+        b=Button( self.w, text = "Youtube",command= self.shop).grid(row=2,column=0)
+        c=Button( self.w, text = "Facebook",command= self.MOV).grid(row=1,column=1)
+        d=Button( self.w, text = "Github",command= self.tra).grid(row=2,column=1)
+        e=Button( self.w, text = "GeeksForGeeks",command= self.aut).grid(row=3,column=0)
+        f=Button( self.w, text = "Shopping",command= self.ent).grid(row=3,column=1)
+    def Restaurants(self):
+        import webbrowser
+        webbrowser.open_new_tab('https://www.google.com')
+
+    def shop(self):
+        import webbrowser
+        webbrowser.open_new_tab('https://www.youtube.com') 
+    def MOV(self):
+        import webbrowser
+        webbrowser.open_new_tab('https://www.facebook.com')
+    def tra(self):
+        import webbrowser
+        webbrowser.open_new_tab('https://github.com')
+    def aut(self):
+        import webbrowser
+        webbrowser.open_new_tab('https://www.geeksforgeeks.org')
+
+    def ent(self):
+        import webbrowser
+        webbrowser.open_new_tab('https://www.costco.com')
+
+         
+        
+    def new_entry(self):
+        self.j= Toplevel(self.window)
+        self.j.title("NEW ENTRY")
+        j=Label(self.j,text='PLEASE REGISTER AND ENTER YOUR INFO').grid(row=0)
+        Label(self.j, text='Enter the user name:').grid(row=1) 
+        Label(self.j, text='PassWord:').grid(row=2) 
+        self.e1 = Entry(self.j) 
+        self.e2 = Entry(self.j,show='*') 
+        self.e1.grid(row=1, column=1) 
+        self.e2.grid(row=2, column=1)
+        
+        b = Button(self.j, text = "submit",command=self.dicts).grid(row=3,column=2)
+    def dicts(self):
+        a=self.e1.get()
+        b=self.e2.get()
+        self.encrypt()
+        self.d[a]=b
+        self.j.destroy()
+        f=open("dict.txt",'a')
+        f.write(a+" "+self.b+"\n")
+        f.close()
+    def encrypt(self):
+        a=self.e2.get()
+        n=len(a)
+        b=''
+        q=["!","$","&","=",">","<","+"]
+        for i in range(0,n):
+            if i%2==0:
+                
+                b=b+str((ord(a[i])+1))+random.choice(q)
+                        
+            else:
+                z=ord(a[i])-1
+                b=b+(chr(z))+random.choice(q)
+                
+        self.b=b
+                
+        print("ENCRYPTED FORM: ",self.b)
+a=code()
