@@ -1,1 +1,73 @@
-readme
+# AI-Powered Resume Parser
+
+## Overview
+The **AI-Powered Resume Parser** is a system designed to automatically extract key details such as education, skills, and experience from resumes using Natural Language Processing (NLP). The parsed information is stored in a MongoDB database for further use. The pipeline is automated using AWS Lambda, ensuring seamless integration and real-time processing when resumes are uploaded to an S3 bucket.
+
+## Tech Stack
+- **Python**: Core language used for building the parser and processing resumes.
+- **NLP (SpaCy)**: Extracts key information from resumes such as education, skills, and work experience.
+- **MongoDB**: A NoSQL database used to store parsed resume details.
+- **AWS Lambda**: Automates the resume parsing pipeline and triggers when resumes are uploaded to S3.
+- **pdfminer.six**: For extracting text from PDF resumes.
+- **Boto3**: AWS SDK for Python, used to interact with S3.
+
+## Features
+- **Automated Resume Parsing**: Parses resumes when they are uploaded to an S3 bucket.
+- **NLP-Powered Extraction**: Uses SpaCy to identify key sections like education, skills, and experience.
+- **Real-time Processing**: AWS Lambda automatically processes and stores resumes in MongoDB.
+- **Scalable Architecture**: Capable of handling multiple resume formats and can be extended to process other document types.
+
+## Installation
+
+### Requirements
+- Python 3.x
+- **Python Libraries**:
+  - `spacy`
+  - `pymongo`
+  - `boto3`
+  - `pdfminer.six`
+
+Install the required Python libraries:
+```bash
+pip install spacy pymongo boto3 pdfminer.six
+```
+
+Download the SpaCy English language model:
+```bash
+python -m spacy download en_core_web_sm
+```
+
+### MongoDB Setup
+You need a running instance of MongoDB. You can either set up a local MongoDB server or use **MongoDB Atlas**.
+
+Update the MongoDB connection string in `lambda_handler.py` and `mongodb_connection.py`:
+```python
+client = MongoClient('mongodb://your-mongodb-endpoint:27017/')
+```
+
+### AWS Setup
+
+#### 1. AWS S3
+- Create an **S3 bucket** to store resumes.
+- Ensure the bucket has proper permissions to trigger Lambda functions on file uploads.
+
+#### 2. AWS Lambda
+- Create a new AWS Lambda function.
+- Upload the code from `lambda_handler.py` as the Lambda handler function.
+- Set up the necessary IAM role with permissions to access S3 and MongoDB.
+- Configure an **S3 Event Trigger** on the bucket to invoke the Lambda function on file uploads.
+
+### Usage
+
+1. **Upload Resume**: Upload a resume file (PDF or DOCX) to the configured S3 bucket.
+2. **Resume Parsing**: AWS Lambda automatically triggers the `lambda_handler.py` function, which processes the resume and stores the extracted details (education, skills, experience) in MongoDB.
+3. **MongoDB Storage**: The parsed resume data can be accessed via MongoDB for querying and further analysis.
+
+### Files in this Project
+- **lambda_handler.py**: The main Lambda function that extracts resume text, processes it using SpaCy, and stores the parsed data in MongoDB.
+- **mongodb_connection.py**: Contains the MongoDB connection setup and helper function to store resume data.
+
+### Future Enhancements
+- Add support for DOCX file formats using `python-docx`.
+- Train or fine-tune NLP models to improve the accuracy of the resume parsing for specific fields (job titles, dates, etc.).
+- Add error handling and logging to the Lambda function for better monitoring and debugging.
